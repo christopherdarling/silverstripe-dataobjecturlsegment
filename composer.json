@@ -1,0 +1,24 @@
+{
+    "name": "christopherdarling/silverstripe-dataobjecturlsegment",
+    "description": "Extension + field to add URLSegment to DataObjects",
+    "homepage": "http://github.com/christopherdarling/silverstripe-dataobjecturlsegment",
+    "keywords": ["silverstripe", "urlsegment"],
+    "license": "BSD-3-Clause",
+    "authors": [
+      {"name": "Christopher Darling","email": "me@christopherdarling.co.uk"}
+    ],
+    "support": {
+      "issues": "http://github.com/christopherdarling/silverstripe-dataobjecturlsegment/issues"
+    },
+    "require": {
+      "silverstripe/cms": "^4"
+    },
+    "autoload": {
+      "psr-4": {
+          "ChristopherDarling\\DataObjectURLSegment\\": "src/"
+      }
+    },
+    "extra": {
+      "installer-name": "dataobjecturlsegment"
+    }
+  }
