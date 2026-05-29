@@ -5,11 +5,11 @@ namespace ChristopherDarling\DataObjectURLSegment;
 use SilverStripe\ORM\DataList;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Control\Director;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\View\Parsers\URLSegmentFilter;
 use ChristopherDarling\DataObjectURLSegment\DataObjectURLSegmentField;
 
-class DataObjectExtension extends DataExtension
+class DataObjectURLSegmentExtension extends Extension
 {
     private static $db = [
         'URLSegment' => 'Varchar(255)',
@@ -47,8 +47,6 @@ class DataObjectExtension extends DataExtension
 
     public function onBeforeWrite()
     {
-        parent::onBeforeWrite();
-
         // If there is no URLSegment set, generate one from Title
         $defaultSegment = $this->generateURLSegment(_t(
             'SilverStripe\\CMS\\Controllers\\CMSMain.NEWPAGE',
@@ -71,7 +69,7 @@ class DataObjectExtension extends DataExtension
         // Ensure that this object has a non-conflicting URLSegment value.
         $count = 2;
         while (!$this->validURLSegment()) {
-            $this->owner->URLSegment = preg_replace('/-[0-9]+$/', null, $this->owner->URLSegment) . '-' . $count;
+            $this->owner->URLSegment = preg_replace('/-[0-9]+$/', '', $this->owner->URLSegment) . '-' . $count;
             $count++;
         }
     }

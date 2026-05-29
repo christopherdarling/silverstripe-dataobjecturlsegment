@@ -9,13 +9,6 @@ use SilverStripe\CMS\Forms\SiteTreeURLSegmentField;
 
 class DataObjectURLSegmentField extends SiteTreeURLSegmentField
 {
-    public function Field($properties = array())
-    {
-        Requirements::add_i18n_javascript('silverstripe/cms: client/lang', false, true);
-
-        return parent::Field($properties);
-    }
-
     protected $record;
 
     public function setModelRecord(DataObject $record)
