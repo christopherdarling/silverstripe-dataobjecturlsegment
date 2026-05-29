@@ -69,7 +69,8 @@ class DataObjectURLSegmentExtension extends Extension
         // Ensure that this object has a non-conflicting URLSegment value.
         $count = 2;
         while (!$this->validURLSegment()) {
-            $this->owner->URLSegment = preg_replace('/-[0-9]+$/', '', $this->owner->URLSegment) . '-' . $count;
+            $currentURLSegment = $this->owner->URLSegment ?? ''; // avoid passing null to preg_replace
+            $this->owner->URLSegment = preg_replace('/-[0-9]+$/', '', $currentURLSegment) . '-' . $count;
             $count++;
         }
     }
